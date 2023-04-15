@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:note_tracker/models/boxes.dart';
+import 'package:note_tracker/models/savenotes.dart';
 import 'package:note_tracker/screens/intro_screen.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(SaveNoteAdapter());
+  boxNotes = await Hive.openBox<SaveNote>("keep notes");
   runApp(const MyApp());
 }
 
