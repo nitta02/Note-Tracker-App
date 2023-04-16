@@ -1,0 +1,1 @@
+const openBox = "Keep Notes";

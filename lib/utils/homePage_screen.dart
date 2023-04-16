@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_tracker/models/boxes.dart';
 import 'package:note_tracker/models/savenotes.dart';
+import 'package:note_tracker/widgets/edit_option.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -64,6 +65,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               title: titleController.text,
                               description: descriptionController.text),
                         );
+                        titleController.clear();
+                        descriptionController.clear();
                       });
                     },
                     child: const Text("Add"),
@@ -82,28 +85,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   itemCount: boxNotes.length,
                   itemBuilder: (context, index) {
                     SaveNote savenotes = boxNotes.getAt(index);
-                    return ListTile(
-                      leading: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            boxNotes.deleteAt(index);
-                          });
-                        },
-                        icon: Icon(
-                          CupertinoIcons.delete_solid,
+                    return Card(
+                      elevation: 15.0,
+                      child: ListTile(
+                        leading: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              boxNotes.deleteAt(index);
+                            });
+                          },
+                          icon: Icon(
+                            CupertinoIcons.delete_solid,
+                          ),
                         ),
-                      ),
-                      title: Text(
-                        "Notes Name : ${savenotes.title}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.5,
+                        title: Text(
+                          "Notes Name : ${savenotes.title}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
                         ),
-                      ),
-                      subtitle: Text(
-                        "Description : ${savenotes.description}",
-                        style: TextStyle(
-                          letterSpacing: 1.5,
+                        subtitle: Text(
+                          "Description : ${savenotes.description}",
+                          style: TextStyle(
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          onPressed: () {
+                            // return FloatingActionButton(onPressed: onPressed)
+                          },
+                          icon: Icon(CupertinoIcons.pencil_circle_fill),
                         ),
                       ),
                     );
