@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.orange[300],
       appBar: AppBar(
         title: const Text(
-          "Keep Note",
+          "Track Note",
           style: TextStyle(
             letterSpacing: 1.5,
           ),
